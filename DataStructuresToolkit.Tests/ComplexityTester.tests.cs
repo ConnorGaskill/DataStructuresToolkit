@@ -69,7 +69,7 @@ namespace DataStructuresToolkit.Tests
         /// Asserts the time to complete each method call increases quadratically within 1 ms
         /// </summary>
         [Test]
-        public void QuadraticScenario_ShouldBeLinear()
+        public void QuadraticScenario_ShouldBeQuadratic()
         {
             int[] arr1 = RandomUtilities.GenerateRandomArray(1000, 1, 1000);
             int[] arr2 = RandomUtilities.GenerateRandomArray(10000, 1, 1000);
