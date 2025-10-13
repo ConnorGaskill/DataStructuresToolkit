@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataStructuresToolkit
 {
-    public static class ArrayStringListHelper
+    public static class ArrayStringListHelpers
     {
         /// <summary>
         /// Inserts a value into an array at the specified index.
