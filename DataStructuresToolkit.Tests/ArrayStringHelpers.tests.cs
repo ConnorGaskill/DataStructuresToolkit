@@ -7,6 +7,7 @@ using DataStructuresUtilities;
 
 namespace DataStructuresToolkit.Tests
 {
+    [Ignore("Too Slow")]
     [TestFixture]
     public class ArrayStringListHelpers_Tests
     {

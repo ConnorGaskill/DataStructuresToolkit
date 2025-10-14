@@ -14,10 +14,18 @@ namespace DataStructuresToolkit
         /// <param name="value">The value to insert.</param>
         /// <returns>A new array with the value inserted at the specified index.</returns>
         /// <remarks>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when <paramref name="index"/> is less than 0 or greater than the length of <paramref name="arr"/>.
+        /// </exception>
         /// Time complexity: O(n) – because all elements after the insertion index must be shifted.
         /// </remarks>
         public static int[] InsertIntoArray(int[] arr, int index, int value)
         {
+            if (index < 0 || index > arr.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), "Index must be between 0 and the length of the array.");
+            }
+
             int[] newArr = new int[arr.Length + 1];
 
             for (int i = 0; i < index; i++)

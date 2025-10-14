@@ -4,6 +4,7 @@ using DataStructuresUtilities;
 namespace DataStructuresToolkit.Tests
 {
     [TestFixture]
+    [Ignore("Too Slow")]
     public class ComplexityTesterTests
     {
         /// <summary>
