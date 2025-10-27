@@ -5,6 +5,14 @@ namespace DemoHarness
     {
         static void Main(string[] args)
         {
+            TestStackQueues();
+
+
+
+        }
+
+        static void TestStackQueues ()
+        {
             List<string> names = DataStructuresUtilities.RandomUtilities.GenerateRandomNamesList(10);
 
             MyStack<string> myStack = new MyStack<string>();
@@ -35,10 +43,22 @@ namespace DemoHarness
                 Console.WriteLine(myQueue.Count);
             }
 
-            while(myQueue.Count > 0)
+            while (myQueue.Count > 0)
             {
                 Console.WriteLine(myQueue.Dequeue());
             }
         }
+
+        static void TestSearches ()
+        {
+
+        }
+
+        static void TestSorts ()
+        {
+
+
+        }
+
     }
 }
