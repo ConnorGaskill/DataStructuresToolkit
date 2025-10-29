@@ -47,25 +47,28 @@ namespace DataStructuresUtilities
             sw.Stop();
             return sw.Elapsed;
         }
-        public static void PrintFastest(params KeyValuePair<string, TimeSpan>[] timeSpans)
+        public static string GetFastest(params KeyValuePair<string, TimeSpan>[] timeSpans)
         {
             if (timeSpans == null || timeSpans.Length == 0)
             {
-                Console.WriteLine("No TimeSpans provided.");
-                return;
+                return "No TimeSpans provided.";
             }
 
             var fastest = timeSpans.OrderBy(ts => ts.Value).First();
 
-            Console.WriteLine($"Fastest: {fastest.Key} - {fastest.Value}");
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append($"Fastest: {fastest.Key} - {fastest.Value}");
 
             foreach (var ts in timeSpans)
             {
                 if (ts.Key == fastest.Key) continue;
 
                 var difference = ts.Value - fastest.Value;
-                Console.WriteLine($"{fastest.Key} was faster than {ts.Key} by {difference}");
+                sb.Append($"\n{fastest.Key} was faster than {ts.Key} by {difference}");
             }
+
+            return sb.ToString();
         }
     }
 }

@@ -67,5 +67,11 @@
             return result;
         }
 
+        public static int[] Shuffle(int[] arr)
+        {
+           return arr = GenerateRandomArray(arr.Length, arr.Min(), arr.Max());
+
+        }
+
     }
 }
