@@ -112,11 +112,11 @@ namespace DemoHarness
 
             Console.WriteLine("\nTesting sorts\n");
 
-            int[] arr1000 = DataStructuresUtilities.RandomUtilities.GenerateRandomArray(1000, 1, 10);
+            int[] arr1000 = DataStructuresUtilities.RandomUtilities.GenerateRandomArray(1000, 1, 1000);
 
-            int[] arr10000 = DataStructuresUtilities.RandomUtilities.GenerateRandomArray(10000, 1, 10);
+            int[] arr10000 = DataStructuresUtilities.RandomUtilities.GenerateRandomArray(10000, 1, 1000);
 
-            int[] arr100000 = DataStructuresUtilities.RandomUtilities.GenerateRandomArray(100000, 1, 10);
+            int[] arr100000 = DataStructuresUtilities.RandomUtilities.GenerateRandomArray(100000, 1, 1000);
 
             TimeSpan mergeSortTime = DataStructuresUtilities.TimeUtilities.RunWithStopwatch(() => SortingSearchingHelpers.MergeSort(arr1000));
 
