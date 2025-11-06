@@ -1,5 +1,6 @@
 ﻿using DataStructuresToolkit;
-using DataStructuresToolkit.StacksQueues;
+using DataStructuresToolkit.DataStructures.StacksQueues;
+
 namespace DemoHarness
 {
     internal class Program

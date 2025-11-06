@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using DataStructuresToolkit.StacksQueues;
+using DataStructuresToolkit.DataStructures.StacksQueues;
 using System;
 
 namespace DataStructuresToolkit.Tests
@@ -10,7 +10,7 @@ namespace DataStructuresToolkit.Tests
         [Test]
         public void Enqueue_IncreasesCount()
         {
-            var queue = new MyQueue<int>();
+            var queue = new DataStructures.StacksQueues.MyQueue<int>();
 
             queue.Enqueue(1);
             queue.Enqueue(2);
@@ -21,7 +21,7 @@ namespace DataStructuresToolkit.Tests
         [Test]
         public void Peek_ReturnsFirstEnqueuedItem_WithoutRemoving()
         {
-            var queue = new MyQueue<int>();
+            var queue = new DataStructures.StacksQueues.MyQueue<int>();
 
             queue.Enqueue(10);
             queue.Enqueue(20);
@@ -35,20 +35,20 @@ namespace DataStructuresToolkit.Tests
         [Test]
         public void Dequeue_ReturnsFirstEnqueuedItem_AndDecrementsCount()
         {
-            var queue = new MyQueue<string>();
-            queue.Enqueue("a");
-            queue.Enqueue("b");
+            var queue = new DataStructures.StacksQueues.MyQueue<char>();
+            queue.Enqueue('a');
+            queue.Enqueue('b');
 
             var dequeued = queue.Dequeue();
 
-            Assert.That(dequeued, Is.EqualTo("a"));
+            Assert.That(dequeued, Is.EqualTo('a'));
             Assert.That(queue.Count, Is.EqualTo(1));
         }
 
         [Test]
         public void Dequeue_OnEmptyQueue_ThrowsInvalidOperationException()
         {
-            var queue = new MyQueue<double>();
+            var queue = new DataStructures.StacksQueues.MyQueue<char>();
 
             Assert.Throws<InvalidOperationException>(() => queue.Dequeue());
         }
@@ -56,7 +56,7 @@ namespace DataStructuresToolkit.Tests
         [Test]
         public void Peek_OnEmptyQueue_ThrowsInvalidOperationException()
         {
-            var queue = new MyQueue<char>();
+            var queue = new DataStructures.StacksQueues.MyQueue<char>();
 
             Assert.Throws<InvalidOperationException>(() => queue.Peek());
         }
@@ -65,7 +65,7 @@ namespace DataStructuresToolkit.Tests
         public void CircularQueue_Wraparound_WorksCorrectly()
         {
             
-            var queue = new MyQueue<int>(4);
+            var queue = new DataStructures.StacksQueues.MyQueue<int>();
 
             queue.Enqueue(1);
             queue.Enqueue(2);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataStructuresToolkit.StacksQueues
+namespace DataStructuresToolkit.DataStructures.StacksQueues
 {
     /// <summary>
     /// A generic stack implementation using a resizable array.

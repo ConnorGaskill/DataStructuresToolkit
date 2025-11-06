@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
-using DataStructuresToolkit.StacksQueues;
+using DataStructuresToolkit.DataStructures.StacksQueues;
 
 namespace DataStructuresToolkit.Tests.StacksQueues
 {

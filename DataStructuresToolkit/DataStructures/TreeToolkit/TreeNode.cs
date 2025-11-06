@@ -1,5 +1,4 @@
-﻿// Week6_TreeToolkit/TreeNode.cs
-namespace DataStructuresToolkit.DataStructures
+﻿namespace DataStructuresToolkit.DataStructures.Trees
 {
     /// <summary>
     /// Represents a node in a binary tree. Each node contains an integer value
