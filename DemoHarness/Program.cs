@@ -92,7 +92,7 @@ namespace DemoHarness
 
             binarySearchTime = DataStructuresUtilities.TimeUtilities.RunWithStopwatch(() => SortingSearchingHelpers.BinarySearch(arr100000, 50000));
 
-            Console.WriteLine("\n10000 elements\n");
+            Console.WriteLine("\n100000 elements\n");
 
             Console.WriteLine(DataStructuresUtilities.TimeUtilities.GetFastest(
 
