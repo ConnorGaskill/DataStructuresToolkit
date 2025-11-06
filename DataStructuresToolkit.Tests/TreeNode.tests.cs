@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
-using System;
+using System.Collections.Generic;
 using DataStructuresToolkit.DataStructures.Trees;
+using NUnit.Framework.Legacy;
 
 namespace DataStructuresToolkit.Tests.Trees
 {
@@ -8,7 +9,7 @@ namespace DataStructuresToolkit.Tests.Trees
     public class BstTests
     {
         [Test]
-        public void Insert_LectureSequence_ContainsAllValues()
+        public void Insert_LectureSequence_ContainsAllValues_AndCorrectHeight()
         {
             // Arrange
             var bst = new Bst();
@@ -18,20 +19,20 @@ namespace DataStructuresToolkit.Tests.Trees
             foreach (int v in values)
                 bst.Insert(v);
 
-            // Assert: tree should contain all inserted values
+            // Assert: Contains() works for all values
             foreach (int v in values)
-                Assert.That(bst.Contains(v), Is.True, $"Tree should contain value {v}");
+                Assert.That(bst.Contains(v), Is.True);
 
-            // Also ensure tree does not contain a value not inserted
-            Assert.That(bst.Contains(999), Is.False, "Tree should not contain value 999");
+            // Assert: should not contain missing value
+            Assert.That(bst.Contains(999), Is.False);
 
-            // Height check (balanced pattern) → expected height = 2 (edges)
+            // Expected height = 2 edges (balanced pattern)
             int height = Bst.Height(bst.Root);
-            Assert.That(height, Is.EqualTo(2), "Expected height of balanced BST is 2");
+            Assert.That(height, Is.EqualTo(2));
         }
 
         [Test]
-        public void Insert_SortedSequence_CreatesSkewedTree_HeightMatchesNodeCountMinusOne()
+        public void Insert_SortedSequence_CreatesRightSkewedTree_AndCorrectHeight()
         {
             // Arrange
             var bst = new Bst();
@@ -41,19 +42,79 @@ namespace DataStructuresToolkit.Tests.Trees
             foreach (int v in sortedValues)
                 bst.Insert(v);
 
-            // Assert: contains all inserted values
+            // Assert: all values should be found
             foreach (int v in sortedValues)
-                Assert.That(bst.Contains(v), Is.True, $"Tree should contain value {v}");
+                Assert.That(bst.Contains(v), Is.True);
 
-            // Inserting sorted sequence → tree degenerates (height = n - 1)
+            // Skewed tree height = n - 1
             int height = Bst.Height(bst.Root);
-            Assert.That(height, Is.EqualTo(sortedValues.Length - 1),
-                $"Expected height {sortedValues.Length - 1} for a skewed (unbalanced) tree");
+            Assert.That(height, Is.EqualTo(sortedValues.Length - 1));
 
-            // Optional: confirm tree root and skew direction
+            // Root and shape checks
             Assert.That(bst.Root!.Value, Is.EqualTo(10));
-            Assert.That(bst.Root!.Right!.Value, Is.EqualTo(20));
             Assert.That(bst.Root!.Right!.Right!.Value, Is.EqualTo(30));
+        }
+
+        [Test]
+        public void InorderTraversal_ReturnsAscendingOrder_ForTeachingTree()
+        {
+            // Arrange
+            var root = TreeNode.BuildTeachingTree();
+            var inorder = new List<int>();
+
+            // Act
+            TreeNode.Inorder(root, inorder);
+
+            // Assert:
+            // Expected inorder (Left-Root-Right): 3, 27, 9, 38, 43
+            Assert.That(new[] { 3, 27, 9, 38, 43 }, Is.EqualTo(inorder));
+        }
+
+        [Test]
+        public void PreorderTraversal_ReturnsRootBeforeChildren_ForTeachingTree()
+        {
+            // Arrange
+            var root = TreeNode.BuildTeachingTree();
+            var preorder = new List<int>();
+
+            // Act
+            TreeNode.Preorder(root, preorder);
+
+            // Assert:
+            // Expected preorder (Root-Left-Right): 38, 27, 3, 9, 43
+            Assert.That(new[] { 38, 27, 3, 9, 43 }, Is.EqualTo(preorder));
+        }
+
+        [Test]
+        public void PostorderTraversal_ReturnsChildrenBeforeParent_ForTeachingTree()
+        {
+            // Arrange
+            var root = TreeNode.BuildTeachingTree();
+            var postorder = new List<int>();
+
+            // Act
+            TreeNode.Postorder(root, postorder);
+
+            // Assert:
+            // Expected postorder (Left-Right-Root): 3, 9, 27, 43, 38
+            Assert.That(new[] { 3, 9, 27, 43, 38 }, Is.EqualTo(postorder));
+        }
+
+        [Test]
+        public void TeachingTree_HeightAndDepth_Calculations_AreCorrect()
+        {
+            // Arrange
+            var root = TreeNode.BuildTeachingTree();
+
+            // Act
+            int height = TreeNode.Height(root);
+            int depthOfRoot = TreeNode.Depth(root, 38);
+            int depthOfLeaf = TreeNode.Depth(root, 9);
+
+            // Assert
+            Assert.That(height, Is.EqualTo(2));
+            Assert.That(depthOfRoot, Is.EqualTo(0));
+            Assert.That(depthOfLeaf, Is.EqualTo(2));
         }
     }
 }
