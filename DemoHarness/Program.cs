@@ -1,5 +1,8 @@
 ﻿using DataStructuresToolkit;
+using DataStructuresToolkit.DataStructures.AvlTrees;
+using DataStructuresToolkit.DataStructures.StackQueues;
 using DataStructuresToolkit.DataStructures.StacksQueues;
+using DataStructuresUtilities;
 
 namespace DemoHarness
 {
@@ -8,8 +11,11 @@ namespace DemoHarness
         static void Main(string[] args)
         {
             //TestStackQueues();
-            TestSearches();
-            TestSorts();
+            //TestSearches();
+            //TestSorts();
+            TestAvlTree();
+            TestPriorityQueue();
+            TimeTestPriorityQueueVsAvlTree();
 
         }
 
@@ -159,5 +165,96 @@ namespace DemoHarness
 
         }
 
+        static void TestAvlTree()
+        {
+            Console.WriteLine("Building skewed tree: 10 → 20 → 30 (right-heavy)");
+
+            AVLTree tree = AVLTree.BuildSkewedTree();
+
+            tree.PrintTree(tree.Root);
+
+            tree.PrintBalanceFactors(tree.Root);
+
+            Console.WriteLine("Rebalancing tree...");
+
+            tree.Root = tree.Rebalance(tree.Root);
+
+            Console.WriteLine("Rebalanced Tree:");
+
+            tree.PrintTree(tree.Root);
+
+            tree.PrintBalanceFactors(tree.Root);
+
+        }
+
+        static void TestPriorityQueue()
+        {
+            PriorityQueue pq = new PriorityQueue();
+
+            Console.WriteLine("Testing priority queues");
+
+            Console.WriteLine("Enqueuing 5");
+            pq.Enqueue(5);
+            Console.WriteLine("Enqueuing 2");
+            pq.Enqueue(2);
+            Console.WriteLine("Enqueuing 8");
+            pq.Enqueue(8);
+
+            int first = pq.Dequeue();
+
+            Console.WriteLine("First dequeued value: " + first);
+            Console.WriteLine(first == 2 ? "PASS" : "FAIL");
+        }
+
+        static void TimeTestPriorityQueueVsAvlTree()
+        {
+            int size = 100000;
+
+            int[] values = RandomUtilities.GenerateRandomArray(size, 1, size);
+
+            AVLTree avl = new AVLTree();
+            PriorityQueue pq = new PriorityQueue();
+
+            TimeSpan avlInsert = TimeUtilities.RunWithStopwatch(() =>
+            {
+                foreach (int i in values)
+                    avl.Root = avl.InsertBalanced(avl.Root, i);
+            });
+
+            TimeSpan pqInsert = TimeUtilities.RunWithStopwatch(() =>
+            {
+                foreach (int i in values)
+                    pq.Enqueue(i);
+            });
+
+            int searchValue = values[size / 2];
+
+            TimeSpan avlSearch = TimeUtilities.RunWithStopwatch(() =>
+            {
+                avl.Contains(searchValue);
+            });
+
+            TimeSpan pqDequeue = TimeUtilities.RunWithStopwatch(() =>
+            {
+                pq.Dequeue();
+            });
+
+            Console.WriteLine("AVL Insert: " + TimeUtilities.FormatRuntime(avlInsert));
+            Console.WriteLine("PQ Insert: " + TimeUtilities.FormatRuntime(pqInsert));
+
+            Console.WriteLine(TimeUtilities.GetFastest(
+                new KeyValuePair<string, TimeSpan>("AVL Insert", avlInsert),
+                new KeyValuePair<string, TimeSpan>("PQ Dequeue", pqInsert)
+            ));
+
+            Console.WriteLine("AVL Search (Contains): " + avlSearch);
+            Console.WriteLine("PQ Dequeue (min extract): " + pqDequeue);
+
+            Console.WriteLine();
+            Console.WriteLine(TimeUtilities.GetFastest(
+                new KeyValuePair<string, TimeSpan>("AVL Search", avlSearch),
+                new KeyValuePair<string, TimeSpan>("PQ Dequeue", pqDequeue)
+            ));
+        }
     }
 }
