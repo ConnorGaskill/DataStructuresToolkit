@@ -13,9 +13,10 @@ namespace DemoHarness
             //TestStackQueues();
             //TestSearches();
             //TestSorts();
-            TestAvlTree();
-            TestPriorityQueue();
-            TimeTestPriorityQueueVsAvlTree();
+            //TestAvlTree();
+            //TestPriorityQueue();
+            //TimeTestPriorityQueueVsAvlTree();
+            TestHashTableAndAssociativeHelpers();
 
         }
 
@@ -255,6 +256,33 @@ namespace DemoHarness
                 new KeyValuePair<string, TimeSpan>("AVL Search", avlSearch),
                 new KeyValuePair<string, TimeSpan>("PQ Dequeue", pqDequeue)
             ));
+        }
+
+        public static void TestHashTableAndAssociativeHelpers()
+        {
+            Console.WriteLine("SimpleHashTable Collision Demo");
+            SimpleHashTable.Demo();
+
+            Console.WriteLine();
+            Console.WriteLine("AssociativeHelpers Demo");
+
+            // Reset static data to ensure clean test runs
+            AssociativeHelpers.Reset();
+
+            AssociativeHelpers.AddContact("Alice", "555-1234");
+            AssociativeHelpers.AddContact("Bob", "555-9876");
+
+            // Demonstrate dictionary overwrite and hash set duplicate prevention
+            AssociativeHelpers.AddContact("Alice", "555-0000");
+
+            Console.WriteLine();
+            AssociativeHelpers.CheckContact("Alice");
+
+            Console.WriteLine();
+            AssociativeHelpers.CheckContact("Charlie");
+
+            Console.WriteLine();
+            AssociativeHelpers.PrintData();
         }
     }
 }
