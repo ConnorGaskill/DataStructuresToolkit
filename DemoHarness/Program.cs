@@ -3,6 +3,7 @@ using DataStructuresToolkit.DataStructures.AvlTrees;
 using DataStructuresToolkit.DataStructures.StackQueues;
 using DataStructuresToolkit.DataStructures.StacksQueues;
 using DataStructuresUtilities;
+using LinkedListHelpers;
 
 namespace DemoHarness
 {
@@ -16,7 +17,8 @@ namespace DemoHarness
             //TestAvlTree();
             //TestPriorityQueue();
             //TimeTestPriorityQueueVsAvlTree();
-            TestHashTableAndAssociativeHelpers();
+            //TestHashTableAndAssociativeHelpers();
+            TestCustomLinkedLists();
 
         }
 
@@ -272,7 +274,7 @@ namespace DemoHarness
             AssociativeHelpers.AddContact("Alice", "555-1234");
             AssociativeHelpers.AddContact("Bob", "555-9876");
 
-            // Demonstrate dictionary overwrite and hash set duplicate prevention
+            // Demonstrate dictionary overwrite
             AssociativeHelpers.AddContact("Alice", "555-0000");
 
             Console.WriteLine();
@@ -283,6 +285,71 @@ namespace DemoHarness
 
             Console.WriteLine();
             AssociativeHelpers.PrintData();
+        }
+
+        static void TestCustomLinkedLists()
+        {
+            Console.WriteLine("SinglyLinkedList<int>");
+            var singlyList = new SinglyLinkedList<int>();
+            singlyList.AddFirst(30);
+            singlyList.AddFirst(20);
+            singlyList.AddFirst(10);
+
+            Console.WriteLine("Traversal order:");
+            foreach (var value in singlyList.Values())
+            {
+                Console.Write(value + " -> ");
+            }
+            Console.WriteLine("null\n");
+
+            Console.WriteLine("DoublyLinkedList<string>");
+            var doublyList = new DoublyLinkedList<string>();
+            doublyList.AddFirst("middle");
+            doublyList.AddFirst("start");
+            doublyList.AddLast("end");
+
+            Console.WriteLine("Forward traversal:");
+            foreach (var value in doublyList.ValuesForward())
+            {
+                Console.Write(value + " -> ");
+            }
+            Console.WriteLine("null");
+
+            Console.WriteLine("Backward traversal:");
+            foreach (var value in doublyList.ValuesBackward())
+            {
+                Console.Write(value + " -> ");
+            }
+            Console.WriteLine("null");
+
+            Console.WriteLine("\nRemove middle and traverse forward again:");
+            doublyList.Remove("middle");
+            foreach (var value in doublyList.ValuesForward())
+            {
+                Console.Write(value + " -> ");
+            }
+            Console.WriteLine("null\n");
+
+            Console.WriteLine("Built-in LinkedList<int>");
+            var builtInList = new LinkedList<int>();
+            builtInList.AddLast(10);
+            builtInList.AddLast(20);
+            builtInList.AddFirst(5);
+
+            Console.WriteLine("Traversal:");
+            foreach (var value in builtInList)
+            {
+                Console.Write(value + " -> ");
+            }
+            Console.WriteLine("null");
+
+            Console.WriteLine("Remove 20 and traverse again:");
+            builtInList.Remove(20);
+            foreach (var value in builtInList)
+            {
+                Console.Write(value + " -> ");
+            }
+            Console.WriteLine("null");
         }
     }
 }
