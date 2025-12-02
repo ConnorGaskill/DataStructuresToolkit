@@ -1,5 +1,6 @@
 ﻿using DataStructuresToolkit;
 using DataStructuresToolkit.DataStructures.AvlTrees;
+using DataStructuresToolkit.DataStructures.GraphToolkit;
 using DataStructuresToolkit.DataStructures.StackQueues;
 using DataStructuresToolkit.DataStructures.StacksQueues;
 using DataStructuresUtilities;
@@ -18,7 +19,8 @@ namespace DemoHarness
             //TestPriorityQueue();
             //TimeTestPriorityQueueVsAvlTree();
             //TestHashTableAndAssociativeHelpers();
-            TestCustomLinkedLists();
+            //TestCustomLinkedLists();
+            TestGraphTraversals();
 
         }
 
@@ -285,6 +287,90 @@ namespace DemoHarness
 
             Console.WriteLine();
             AssociativeHelpers.PrintData();
+        }
+
+        static void TestGraphTraversals()
+        {
+
+            var chainingGraphData = new Dictionary<string, List<string>>
+            {
+                { "V0",  new List<string>{ "V1", "V2", "V3", "V4", "V5", "V6" } },
+                { "V1",  new List<string>{ "V7" } },
+                { "V2",  new List<string>{ "V8" } },
+                { "V3",  new List<string>{ "V9" } },
+                { "V4",  new List<string>{ "V10" } },
+                { "V5",  new List<string>{ "V11" } },
+                { "V6",  new List<string>() },
+                { "V7",  new List<string>() },
+                { "V8",  new List<string>() },
+                { "V9",  new List<string>() },
+                { "V10", new List<string>() },
+                { "V11", new List<string>() }
+            };
+
+
+            var branchingGraphData = new Dictionary<string, List<string>>
+            {
+                { "V0",  new List<string>{ "V1", "V5" } },
+                { "V1",  new List<string>{ "V2" } },
+                { "V2",  new List<string>{ "V3" } },
+                { "V3",  new List<string>{ "V4", "V9" } },
+                { "V4",  new List<string>{ "V5" } },
+                { "V5",  new List<string>{ "V6" } },
+                { "V6",  new List<string>{ "V7", "V2" } },
+                { "V7",  new List<string>{ "V8" } },
+                { "V8",  new List<string>{ "V9", "V11" } },
+                { "V9",  new List<string>{ "V10" } },
+                { "V10", new List<string>{ "V11" } },
+                { "V11", new List<string>() }
+            };
+
+            MyGraph DFSFaster = new MyGraph(chainingGraphData);
+
+            MyGraph BFSFaster = new MyGraph(branchingGraphData);
+
+            Console.WriteLine("Chaining graph test (DFS advantage)");
+
+            Console.WriteLine("BFS Traversal");
+
+            TimeSpan ts1 = TimeUtilities.RunWithStopwatch(() => GraphHelpers.BFS("V0", DFSFaster));
+
+            Console.WriteLine("DFS Traversal");
+
+            TimeSpan ts2 = TimeUtilities.RunWithStopwatch(() => GraphHelpers.DFS("V0", DFSFaster));
+
+            Console.WriteLine($"Times:\nBFS: {ts1}\nDFS {ts2}");
+
+            Console.WriteLine("Compare:");
+
+            Console.WriteLine(
+                TimeUtilities.GetFastest(
+                new KeyValuePair<string, TimeSpan> ("BFS", ts1), new KeyValuePair<string, TimeSpan> ("DFS", ts2 )
+                )    
+            );
+
+            ///////////////////////
+            Console.WriteLine("-------------------------------------");
+
+            Console.WriteLine("Branching graph test (BFS advantage)");
+
+            Console.WriteLine("BFS Traversal");
+
+            ts1 = TimeUtilities.RunWithStopwatch(() => GraphHelpers.BFS("V0", DFSFaster));
+
+            Console.WriteLine("DFS Traversal");
+
+            ts2 = TimeUtilities.RunWithStopwatch(() => GraphHelpers.DFS("V0", DFSFaster));
+
+            Console.WriteLine($"Times:\nBFS: {ts1}\nDFS {ts2}");
+
+            Console.WriteLine("Compare:");
+
+            Console.WriteLine(
+                TimeUtilities.GetFastest(
+                new KeyValuePair<string, TimeSpan>("BFS", ts1), new KeyValuePair<string, TimeSpan>("DFS", ts2)
+                )
+            );
         }
 
         static void TestCustomLinkedLists()
