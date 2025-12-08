@@ -1,33 +1,112 @@
-MyStack<T>
+DATASTRUCTURESTOOLKIT
 
-A generic stack (LIFO) implemented using a resizable array. Supports standard operations such as Push, Pop, and Peek.
+DataStructuresToolkit is a C# library and demo harness providing implementations of fundamental 
+data structures, sorting/searching algorithms, and utility functions for benchmarking and random 
+data generation. It also includes performance testing and example usage through a console application 
+and NUnit test suite.
 
-Method Complexities:
-Method	Time Complexity
-Push	O(1) amortized (O(n) when resizing)
-Pop	O(1)
-Peek	O(1)
-Use Cases:
+FEATURES
 
-Reversing elements
+Data Structures
 
-Undo/redo functionality
+Stacks and Queues: MyStack<T> and MyQueue<T> implementations.
 
-Expression evaluation (e.g., parsing)
+Linked Lists: Singly and doubly linked lists (SinglyLinkedList<T>, DoublyLinkedList<T>).
 
-MyQueue<T>
+AVL Trees: Balanced binary search tree with insertion and rebalancing.
 
-A generic queue (FIFO) using a circular array with automatic resizing. Supports Enqueue, Dequeue, and Peek.
+Priority Queue: Min-heap based implementation.
 
-Method Complexities:
-Method	Time Complexity
-Enqueue	O(1) amortized (O(n) when resizing)
-Dequeue	O(1)
-Peek	O(1)
-Use Cases:
+Graphs: Directed graphs with BFS and DFS traversal helpers.
 
-Task scheduling
+Hash Tables: Simple hash table and associative helper utilities.
 
-Breadth-first search (BFS)
+Algorithms
 
-Message buffering
+Searches
+
+Linear search
+
+Binary search (requires sorted input)
+
+Sorting
+
+Bubble Sort
+
+Merge Sort
+
+Utilities
+
+Random data generators: integer arrays and names (arrays/lists).
+
+Performance timing helpers (TimeUtilities) to compare algorithm execution times.
+
+DEMO HARNESS
+
+The DemoHarness console application demonstrates the usage of each component:
+
+Stack and queue operations
+
+Sorting and searching comparisons
+
+AVL tree insertion and rebalancing
+
+Priority queue operations
+
+Graph BFS/DFS traversals with timing comparisons
+
+Custom linked list operations
+
+Hash table and associative helper examples
+
+Uncomment tests in Program.Main to explore individual features.
+
+PERFORMANCE TESTING
+
+TimeUtilities allows timing and comparing algorithm execution.
+
+ComplexityTesterTests (NUnit) validates time complexity empirically:
+
+Constant: O(1)
+
+Linear: O(n)
+
+Quadratic: O(n^2)
+
+Note: Some complexity tests are marked [Ignore("Too Slow")] to prevent long-running CI builds.
+
+GETTING STARTED
+
+Clone the repository:
+git clone <repository-url>
+cd DataStructuresToolkit
+
+Build the solution in Visual Studio or via CLI:
+dotnet build
+
+Run the demo console:
+dotnet run --project DemoHarness
+
+Run tests (NUnit):
+dotnet test
+
+PROJECT STRUCTURE
+
+DataStructuresToolkit/
+Core data structures and algorithms
+
+DataStructuresUtilities/
+Random generators and timing utilities
+
+DemoHarness/
+Console demo application
+
+DataStructuresToolkit.Tests/
+NUnit test suite for correctness and performance
+
+README.txt
+Project documentation
+
+LICENSE
+
+MIT License – free to use, modify, and distribute.

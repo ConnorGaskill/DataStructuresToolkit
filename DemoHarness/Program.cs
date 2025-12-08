@@ -244,8 +244,8 @@ namespace DemoHarness
                 pq.Dequeue();
             });
 
-            Console.WriteLine("AVL Insert: " + TimeUtilities.FormatRuntime(avlInsert));
-            Console.WriteLine("PQ Insert: " + TimeUtilities.FormatRuntime(pqInsert));
+            Console.WriteLine("AVL Insert: " + avlInsert);
+            Console.WriteLine("PQ Insert: " + pqInsert);
 
             Console.WriteLine(TimeUtilities.GetFastest(
                 new KeyValuePair<string, TimeSpan>("AVL Insert", avlInsert),

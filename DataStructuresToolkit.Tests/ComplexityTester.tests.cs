@@ -7,12 +7,7 @@ namespace DataStructuresToolkit.Tests
     [Ignore("Too Slow")]
     public class ComplexityTesterTests
     {
-        /// <summary>
-        /// Passes arrays of various sizes
-        /// Calls RunConstantScenario with each array
-        /// Times how long each method call takes to complete
-        /// Asserts the time to complete each method call is constant within 1 ms
-        /// </summary>
+
         [Test]
         public void ConstantScenario_ShouldBeConstant()
         {
@@ -35,12 +30,7 @@ namespace DataStructuresToolkit.Tests
             Assert.That(ts2.TotalMilliseconds, Is.EqualTo(ts3.TotalMilliseconds).Within(1));
 
         }
-        /// <summary>
-        /// Passes arrays of various sizes
-        /// Calls RunLinearScenario with each array
-        /// Times how long each method call takes to complete
-        /// Asserts the time to complete each method call increases linearly within 1 ms
-        /// </summary>
+
         [Test]
         public void LinearScenario_ShouldBeLinear()
         {
@@ -63,12 +53,7 @@ namespace DataStructuresToolkit.Tests
             Assert.That(ts2.TotalMilliseconds, Is.EqualTo(ts3.TotalMilliseconds/10).Within(.5));
 
         }
-        /// <summary>
-        /// Passes arrays of various sizes
-        /// Calls RunQuadraticScenario with each array
-        /// Times how long each method call takes to complete
-        /// Asserts the time to complete each method call increases quadratically within 1 ms
-        /// </summary>
+
         [Test]
         public void QuadraticScenario_ShouldBeQuadratic()
         {

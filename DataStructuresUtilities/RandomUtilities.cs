@@ -1,17 +1,13 @@
 ﻿namespace DataStructuresUtilities
 {
     /// <summary>
-    /// Utilities for random numbers
+    /// Utility class for generating random data.
     /// </summary>
-    public class RandomUtilities
+    public static class RandomUtilities
     {
         /// <summary>
-        /// Creates an array of random ints based on a given length, min value, and max value
+        /// Generates an array of random integers using the given length and numeric range.
         /// </summary>
-        /// <param name="length">Desired size of the array</param>
-        /// <param name="minValue">The minimum value of all random ints in the array</param>
-        /// <param name="maxValue">The maximum value of all random ints in the array</param>
-        /// <returns></returns>
         public static int[] GenerateRandomArray(int length, int minValue, int maxValue)
         {
             Random rand = new Random();
@@ -24,14 +20,19 @@
 
             return array;
         }
+
+        /// <summary>
+        /// Creates a list of random names chosen from a preset name pool.
+        /// Used for generating simple mock data.
+        /// </summary>
         public static List<string> GenerateRandomNamesList(int count)
         {
             string[] namePool = new string[]
             {
-            "Alice", "Bob", "Charlie", "Diana", "Ethan",
-            "Fiona", "George", "Hannah", "Ian", "Julia",
-            "Kevin", "Laura", "Mike", "Nina", "Oscar",
-            "Paula", "Quinn", "Rachel", "Sam", "Tina"
+                "Alice", "Bob", "Charlie", "Diana", "Ethan",
+                "Fiona", "George", "Hannah", "Ian", "Julia",
+                "Kevin", "Laura", "Mike", "Nina", "Oscar",
+                "Paula", "Quinn", "Rachel", "Sam", "Tina"
             };
 
             Random rand = new Random();
@@ -45,14 +46,19 @@
 
             return result;
         }
+
+        /// <summary>
+        /// Creates an array of random names chosen from a preset name pool.
+        /// Same as the List version, but returns a string array.
+        /// </summary>
         public static string[] GenerateRandomNamesArray(int count)
         {
             string[] namePool = new string[]
             {
-            "Alice", "Bob", "Charlie", "Diana", "Ethan",
-            "Fiona", "George", "Hannah", "Ian", "Julia",
-            "Kevin", "Laura", "Mike", "Nina", "Oscar",
-            "Paula", "Quinn", "Rachel", "Sam", "Tina"
+                "Alice", "Bob", "Charlie", "Diana", "Ethan",
+                "Fiona", "George", "Hannah", "Ian", "Julia",
+                "Kevin", "Laura", "Mike", "Nina", "Oscar",
+                "Paula", "Quinn", "Rachel", "Sam", "Tina"
             };
 
             Random rand = new Random();
@@ -67,11 +73,13 @@
             return result;
         }
 
+        /// <summary>
+        /// Shuffles an existing array by recreating it as a new random array.
+        /// Note: This does NOT preserve the original values—it regenerates them.
+        /// </summary>
         public static int[] Shuffle(int[] arr)
         {
-           return arr = GenerateRandomArray(arr.Length, arr.Min(), arr.Max());
-
+            return GenerateRandomArray(arr.Length, arr.Min(), arr.Max());
         }
-
     }
 }
