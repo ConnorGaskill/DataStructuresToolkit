@@ -17,10 +17,10 @@ namespace DemoHarness
             //TestSorts();
             //TestAvlTree();
             //TestPriorityQueue();
-            //TimeTestPriorityQueueVsAvlTree();
+            TimeTestPriorityQueueVsAvlTree();
             //TestHashTableAndAssociativeHelpers();
             //TestCustomLinkedLists();
-            TestGraphTraversals();
+            //TestGraphTraversals();
 
         }
 
