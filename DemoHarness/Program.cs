@@ -213,7 +213,7 @@ namespace DemoHarness
 
         static void TimeTestPriorityQueueVsAvlTree()
         {
-            int size = 100000;
+            int size = 10000;
 
             int[] values = RandomUtilities.GenerateRandomArray(size, 1, size);
 
@@ -247,12 +247,12 @@ namespace DemoHarness
             Console.WriteLine("AVL Insert: " + avlInsert);
             Console.WriteLine("PQ Insert: " + pqInsert);
 
-            Console.WriteLine(TimeUtilities.GetFastest(
+            Console.WriteLine("\n" + TimeUtilities.GetFastest(
                 new KeyValuePair<string, TimeSpan>("AVL Insert", avlInsert),
-                new KeyValuePair<string, TimeSpan>("PQ Dequeue", pqInsert)
+                new KeyValuePair<string, TimeSpan>("PQ Insert", pqInsert)
             ));
 
-            Console.WriteLine("AVL Search (Contains): " + avlSearch);
+            Console.WriteLine("\nAVL Search (Contains): " + avlSearch);
             Console.WriteLine("PQ Dequeue (min extract): " + pqDequeue);
 
             Console.WriteLine();
